@@ -25,12 +25,8 @@ P
 `app/src/main/java/com/example/llyodsbankassignment/presentaion/ui/listners/OnItemClickListner.kt,d/f/df8dd876dedabc74ad6afd4955bbf3a3e833256a
 b
 2utils/src/main/java/com/project/utils/Constants.kt,c/9/c9c9120531e2e1ae911c17c07a1681ece64a6ca8
-<
-build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
 C
 domain/build.gradle,a/3/a3021bb5ba623a461b5fdb89ae51923a4945c354
-@
-app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
 
 Qapp/src/main/java/com/example/llyodsbankassignment/presentaion/ui/MainActivity.kt,8/9/89091985de6d2356e04f4f2a0e6ac187bc84ce42
 |
@@ -43,11 +39,5 @@ m
 =data/src/main/java/com/project/data/models/MealResponseDTO.kt,2/2/22862c866e0a1b06ff432cd9e758a5ed15b5a656
 ˆ
 Xapp/src/main/java/com/example/llyodsbankassignment/presentaion/ui/viewmodels/Resource.kt,d/7/d7b1650a4e0a827abb405082fd1f048f973d3ccf
-y
-Idomain/src/main/java/com/project/domain/models/models/CategoryResponse.kt,f/6/f6edfe66a97668e39d16141129c7dc61a7208676
-z
-Jdomain/src/main/java/com/project/domain/models/usecases/CategoryUseCase.kt,7/7/7765b6177d115e7cf18713b682c55c0b1333e69e
 “
 capp/src/main/java/com/example/llyodsbankassignment/presentaion/ui/fragments/CategoryListFragment.kt,0/d/0da53089924be1317dcb6ae9b88bea9596a6c39e
-‘
-aapp/src/main/java/com/example/llyodsbankassignment/presentaion/ui/viewmodels/CategoryViewModel.kt,4/2/42290cfec7cefd0ded77a96d014dd3fe7cd85ace

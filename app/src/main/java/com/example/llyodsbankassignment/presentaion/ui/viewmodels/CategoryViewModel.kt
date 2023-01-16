@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CategoryViewModel @Inject constructor(val getCategoryUseCase: CategoryUseCase): ViewModel() {
+class CategoryViewModel @Inject constructor(var getCategoryUseCase: CategoryUseCase): ViewModel() {
     private val _cateList = MutableStateFlow<Resource<List<Categories>>>(Resource.loading(null))
     val catState: StateFlow<Resource<List<Categories>>>
         get() = _cateList
