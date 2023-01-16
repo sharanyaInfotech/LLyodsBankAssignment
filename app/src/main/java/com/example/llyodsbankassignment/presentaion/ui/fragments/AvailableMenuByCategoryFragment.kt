@@ -1,5 +1,6 @@
 package com.example.llyodsbankassignment.presentaion.ui.fragments
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,14 +14,12 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.llyodsbankassignment.R
 import com.example.llyodsbankassignment.databinding.FragmentAvailableMenuByCategoryBinding
-import com.example.llyodsbankassignment.databinding.FragmentCategoryListBinding
-import com.example.llyodsbankassignment.presentaion.ui.adapter.CategoryAdapter
 import com.example.llyodsbankassignment.presentaion.ui.adapter.MeanDetailsAdapter
-import com.example.llyodsbankassignment.presentaion.ui.viewmodels.CategoryViewModel
 import com.example.llyodsbankassignment.presentaion.ui.viewmodels.MealDetailViewModel
 import com.example.llyodsbankassignment.presentaion.ui.viewmodels.Resource
 import com.project.domain.models.models.Categories
 import com.project.domain.models.models.Meals
+import com.project.utils.Constants
 import com.project.utils.showOrGone
 import com.project.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,9 +62,14 @@ class AvailableMenuByCategoryFragment : Fragment() {
     }
 
     private fun setUpViewModel(){
+        val bundleData = if (Build.VERSION.SDK_INT >= 33) {
+            requireArguments().getParcelable(Constants.KEY_DETAIL_DATA, Categories::class.java)
+        } else {
+            requireArguments().getParcelable(Constants.KEY_DETAIL_DATA)
+        }
         val mealviewModel: MealDetailViewModel by hiltNavGraphViewModels(R.id.app_navigations)
         lifecycleScope.launch {
-            mealviewModel.MealDetailList()
+            bundleData?.strCategory?.let { mealviewModel.mealDetailList(it) }
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 mealviewModel.mealSate.collectLatest {
                     when(it.status){

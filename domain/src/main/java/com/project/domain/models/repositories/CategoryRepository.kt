@@ -5,5 +5,5 @@ import com.project.domain.models.models.MealByCategoryModel
 
 interface CategoryRepository {
      suspend fun fetchCategories(): CategoryResponse
-     suspend fun fetchMealByCategory(): MealByCategoryModel
+     suspend fun fetchMealByCategory(catStr: String): MealByCategoryModel
 }

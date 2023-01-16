@@ -14,8 +14,8 @@ class CatRepositoryImpl @Inject constructor(
         return categoriesDetailMapper.toShareData(apiService.getCategoryList())
     }
 
-    override suspend fun fetchMealByCategory(): MealByCategoryModel {
-         return categoriesDetailMapper.MapMealData(apiService.getMealByCategory("c"))
+    override suspend fun fetchMealByCategory(catStr: String): MealByCategoryModel {
+         return categoriesDetailMapper.MapMealData(apiService.getMealByCategory(catStr))
     }
 
 }

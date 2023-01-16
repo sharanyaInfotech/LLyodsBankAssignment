@@ -18,9 +18,9 @@ class MealDetailViewModel @Inject constructor(val getMealUseCase: GetMealUseCase
         get() = _mealList
 
 
-    fun MealDetailList() {
+    fun mealDetailList(catStr: String) {
         viewModelScope.launch {
-            getMealUseCase()
+            getMealUseCase(catStr)
                 .catch { e ->
                     _mealList.value = (Resource.error(e.toString(), null))
                 }

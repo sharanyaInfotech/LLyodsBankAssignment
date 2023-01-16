@@ -1,7 +1,6 @@
 package com.example.llyodsbankassignment.presentaion.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +8,7 @@ import com.example.llyodsbankassignment.R
 import com.example.llyodsbankassignment.databinding.ItemCategoryListBinding
 import com.project.domain.models.models.Meals
 import com.project.utils.loadWithException
+import com.project.utils.showOrGone
 
 class MeanDetailsAdapter() : RecyclerView.Adapter<MeanDetailsAdapter.CategoryDataViewHolder>() {
 
@@ -37,6 +37,7 @@ class MeanDetailsAdapter() : RecyclerView.Adapter<MeanDetailsAdapter.CategoryDat
                 categoryList.get(position).strMealThumb,
                 R.drawable.ic_launcher_foreground
             )
+            binding.imgRgtArrow.showOrGone(false)
         }
     }
 

@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class GetMealUseCase @Inject constructor(private val categoryRepository: CategoryRepository) {
-    operator fun invoke(): Flow<MealByCategoryModel> {
+    operator fun invoke(catStr: String): Flow<MealByCategoryModel> {
         return flow {
-            emit(categoryRepository.fetchMealByCategory())
+            emit(categoryRepository.fetchMealByCategory(catStr))
         }
     }
 }
