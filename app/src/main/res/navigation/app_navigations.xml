@@ -19,7 +19,18 @@
     <fragment android:id="@+id/categoryDetailsFragment"
         android:name="com.example.llyodsbankassignment.presentaion.ui.fragments.CategoryDetailsFragment"
         android:label="Details"
-        tools:layout="@layout/fragment_category_details">
+        tools:layout="@layout/fragment_category_details"
+        app:destination="@id/mealByCategoryDetail">
+
+        <action
+            android:id="@+id/action_listFrg_to_mealDetailFragment"
+            app:destination="@+id/mealByCategoryDetail" />
+    </fragment>
+
+    <fragment android:id="@+id/mealByCategoryDetail"
+        android:name="com.example.llyodsbankassignment.presentaion.ui.fragments.AvailableMenuByCategoryFragment"
+        android:label="Menu Details"
+        tools:layout="@layout/fragment_available_menu_by_category">
     </fragment>
 
 </navigation>

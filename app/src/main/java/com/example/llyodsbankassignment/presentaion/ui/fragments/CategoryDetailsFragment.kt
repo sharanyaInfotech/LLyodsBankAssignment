@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
+import com.example.llyodsbankassignment.R
 import com.example.llyodsbankassignment.databinding.FragmentCategoryDetailsBinding
 import com.project.domain.models.models.Categories
 import com.project.utils.Constants.KEY_DETAIL_DATA
@@ -39,7 +42,7 @@ class CategoryDetailsFragment : Fragment() {
             requireArguments().getParcelable(KEY_DETAIL_DATA)
         }
         binding.btnMore.setOnClickListener(View.OnClickListener {
-
+            findNavController().navigate(R.id.action_listFrg_to_mealDetailFragment, bundleOf(Pair(KEY_DETAIL_DATA, bundleData)))
         })
 
         with(binding){
