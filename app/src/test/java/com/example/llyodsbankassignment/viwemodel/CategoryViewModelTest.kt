@@ -1,12 +1,10 @@
 package com.example.llyodsbankassignment.viwemodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.llyodsbankassignment.presentaion.ui.viewmodels.CategoryViewModel
-import com.project.domain.models.models.Categories
-import com.project.domain.models.models.CategoryResponse
-import com.project.domain.models.usecases.CategoryUseCase
-import io.mockk.impl.annotations.MockK
-import io.mockk.mockk
+import com.example.llyodsbankassignment.domain.models.Categories
+import com.example.llyodsbankassignment.domain.models.CategoryResponse
+import com.example.llyodsbankassignment.views.ui.viewmodels.CategoryViewModel
+import com.example.llyodsbankassignment.domain.usecases.CategoryUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.asFlow
@@ -21,6 +19,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody
 import org.junit.*
 import org.junit.rules.TestRule
+import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import retrofit2.HttpException
@@ -29,9 +28,10 @@ import retrofit2.Response
 @ExperimentalCoroutinesApi
 class CategoryViewModelTest {
 
-    @MockK
     private lateinit var catViewModel: CategoryViewModel
-    private val categoryUseCase = mockk<CategoryUseCase>(relaxed = true)
+    @Mock
+    private lateinit var categoryUseCase: CategoryUseCase
+
     @ExperimentalCoroutinesApi
     private val testDispatcher = TestCoroutineDispatcher()
     @get:Rule
@@ -42,22 +42,27 @@ class CategoryViewModelTest {
         Dispatchers.setMain(testDispatcher)
         MockitoAnnotations.initMocks(this)
         catViewModel = CategoryViewModel(categoryUseCase)
-        catViewModel.getCategoryUseCase = categoryUseCase
+        categoryUseCase = catViewModel.getCategoryUseCase
     }
 
     @Test
     fun handleOperationSuccessTest(): Unit = runTest {
-        val mcategories = CategoryResponse(arrayListOf(
-            Categories("1", "Vegan","https:\\/\\/www.themealdb.com\\/images\\/media\\/meals\\/qxutws1486978099.jpg","abcd")))
-        Mockito.`when`(categoryUseCase()).thenReturn(flowOf(mcategories))
-        val categoryList=(categoryUseCase()).flatMapConcat { mcategories.categories.asFlow()}.toList()
-        Assert.assertNotEquals(categoryList.size, 0)
-        Assert.assertEquals(categoryList.get(0).idCategory, "1")
+        Mockito.`when`(categoryUseCase.invoke()).thenReturn(
+            flowOf( CategoryResponse(
+                arrayListOf(
+                    Categories("1","abcd", "https://", "dhjvchdjbcv"),
+                ),)
+            )
+        )
+
+        val catList=categoryUseCase.invoke().flatMapConcat { it.categories.asFlow()}.toList()
+        Assert.assertNotEquals(catList.size, 0)
+        Assert.assertEquals(catList.get(0).strCategory, "abcd")
     }
 
     @Test(expected = retrofit2.HttpException::class)
     fun handleOperationFailTest(): Unit = runTest {
-        Mockito.`when`(categoryUseCase()).thenThrow(
+        Mockito.`when`(categoryUseCase).thenThrow(
             HttpException(
                 Response.error<Any>(
                     409,
@@ -65,7 +70,7 @@ class CategoryViewModelTest {
                 )
             )
         )
-        Assert.assertEquals(categoryUseCase().flatMapConcat { it.categories.asFlow()}.toList().size, 0)
+        Assert.assertEquals(categoryUseCase.invoke().flatMapConcat{ it.categories.asFlow()}.toList().size, 0)
     }
 
     @After

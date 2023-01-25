@@ -6,7 +6,7 @@
     app:startDestination="@id/categoryListFragment">
 
     <fragment android:id="@+id/categoryListFragment"
-        android:name="com.example.llyodsbankassignment.presentaion.ui.fragments.CategoryListFragment"
+        android:name="com.example.llyodsbankassignment.views.ui.fragments.CategoryListFragment"
         android:label="Food Items"
         tools:layout="@layout/fragment_category_list"
         app:destination="@id/categoryDetailsFragment">
@@ -17,7 +17,7 @@
     </fragment>
 
     <fragment android:id="@+id/categoryDetailsFragment"
-        android:name="com.example.llyodsbankassignment.presentaion.ui.fragments.CategoryDetailsFragment"
+        android:name="com.example.llyodsbankassignment.views.ui.fragments.CategoryDetailsFragment"
         android:label="Details"
         tools:layout="@layout/fragment_category_details"
         app:destination="@id/mealByCategoryDetail">
@@ -28,7 +28,7 @@
     </fragment>
 
     <fragment android:id="@+id/mealByCategoryDetail"
-        android:name="com.example.llyodsbankassignment.presentaion.ui.fragments.AvailableMenuByCategoryFragment"
+        android:name="com.example.llyodsbankassignment.views.ui.fragments.AvailableMenuByCategoryFragment"
         android:label="Menu Details"
         tools:layout="@layout/fragment_available_menu_by_category">
     </fragment>
